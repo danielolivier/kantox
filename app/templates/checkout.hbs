@@ -1,0 +1,51 @@
+{{page-title "Checkout"}}
+
+<main class="container">
+  <Ui::Breadcrumbs @route="products">
+    <span>Continue shopping</span>
+  </Ui::Breadcrumbs>
+
+  <PageLayout
+    @title="Shopping cart"
+    @description="You have
+    {{total-quantity @model 'quantity'}}
+    items in your cart."
+  >
+    <div class="grid grid-cols-3 gap-4 mt-6">
+      <div class="col-span-2">
+        {{#each @model as |product|}}
+          <Ui::Card @class="grid grid-cols-3 mb-8">
+            <figure class="col-span-1">
+              <img
+                class="h-full w-full object-cover p-4 rounded-3xl"
+                alt="Picture of {{product.name}}"
+                src={{product.image}}
+              />
+            </figure>
+            <section class="flex flex-col gap-4 col-span-2 p-4">
+              <div class="flex items-center justify-between text-xl leading-7">
+                <span class="font-bold">{{product.name}}</span>
+
+                <span class="mr-4">&#163;{{product.price}}</span>
+              </div>
+
+              <Ui::Tag @class="w-fit">
+                {{product.offer}}
+              </Ui::Tag>
+
+              <footer class="w-fit mt-16">
+                <CartButton @product={{product}} />
+              </footer>
+            </section>
+          </Ui::Card>
+        {{/each}}
+      </div>
+
+      {{#if @model.length}}
+        {{#let (total-price @model) as |totals|}}
+          <Summary @totals={{totals}} @products={{@model}} />
+        {{/let}}
+      {{/if}}
+    </div>
+  </PageLayout>
+</main>

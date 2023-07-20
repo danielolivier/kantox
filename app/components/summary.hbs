@@ -1,0 +1,78 @@
+<div class="col-span-1 h-fit border border-gray-100 shadow-sm rounded-lg">
+  <div class="flex items-center h-16 bg-gray-100">
+    <h1 class="text-xl leading-7 font-bold mx-4">Summary</h1>
+  </div>
+
+  <div class="grid grid-cols-6 border-b border-b-gray-100">
+    <div class="col-span-1 my-4">
+      <button
+        class="flex items-center justify-between text-base leading-6 font-normal mx-4 py-4"
+        type="button"
+        {{on "click" this.onToggleSubtotal}}
+      >
+        <HeroIcon
+          @icon="chevron-right"
+          class="h-6 w-8 transition-all duration-300
+            {{if this.toggleSubtotal 'rotate-90' 'rotate-0'}}"
+        />
+      </button>
+    </div>
+
+    <div class="col-span-5 my-4 pr-4">
+      <div
+        class="flex items-center justify-between text-base leading-6 font-normal py-4"
+      >
+        <span>Subtotal</span>
+        <span class="font-bold">&#163;
+          {{@totals.original}}
+        </span>
+      </div>
+
+      {{#if this.toggleSubtotal}}
+        {{#each @products as |product|}}
+          <div class="flex items-center justify-between py-2">
+            <span>{{product.quantity}} x {{product.name}}</span>
+            <span>&#163;{{math
+                "multiply"
+                product.price
+                product.quantity
+              }}</span>
+          </div>
+        {{/each}}
+      {{/if}}
+
+      <div
+        class="flex items-center justify-between text-base leading-6 font-normal py-4"
+      >
+        <span>Shipping Cost</span>
+        <span class="font-bold">&#163; 0</span>
+      </div>
+
+      <div
+        class="flex items-center justify-between text-base leading-6 font-normal py-4"
+      >
+        <span>Discount</span>
+        <span class="font-bold">&#8211;&#163;
+          {{@totals.discount}}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="flex items-center justify-between text-xl leading-7 font-normal py-8 mx-4"
+  >
+    <span>Total Payable</span>
+    <span class="font-bold">&#163;
+      {{@totals.total}}
+    </span>
+  </div>
+
+  <div class="flex items-center justify-end">
+    <button
+      title="Available soon"
+      class="m-4 bg-violet-700 shadow-sm rounded-lg text-white text-base leading-6 font-bold p-2 cursor-not-allowed"
+      type="button"
+    >Go to Checkout</button>
+  </div>
+</div>

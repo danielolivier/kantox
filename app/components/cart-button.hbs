@@ -1,0 +1,27 @@
+{{#if @product.quantity}}
+  <div
+    class="flex items-center justify-between gap-4 text-violet-700 bg-violet-50 text-base leading-6 font-bold p-2 rounded-lg shadow-sm"
+  >
+    <HeroIcon
+      @icon="trash"
+      class="w-6 h-6 hover:bg-violet-100 cursor-pointer"
+      {{on "click" this.removeFromCart}}
+    />
+
+    <span>{{@product.quantity}}</span>
+
+    <HeroIcon
+      @icon="plus"
+      class="w-6 h-6 hover:bg-violet-100 cursor-pointer"
+      {{on "click" this.addToCart}}
+    />
+  </div>
+{{else}}
+  <button
+    type="button"
+    class="bg-violet-50 hover:bg-violet-100 text-violet-700 text-base leading-6 font-bold p-2 rounded-lg shadow-sm"
+    {{on "click" this.addToCart}}
+  >
+    Add to cart
+  </button>
+{{/if}}

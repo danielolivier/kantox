@@ -1,0 +1,14 @@
+<nav class="flex items-center gap-8 my-12">
+  {{#each this.NAVBAR_ITEMS as |item|}}
+    <span
+      title={{if item.disabled "Available soon"}}
+      class="cursor-pointer
+        {{if
+          item.selected
+          'font-bold text-violet-700 underline underline-offset-8'
+        }}
+        {{if item.disabled '!cursor-not-allowed'}}"
+      aria-label={{item.name}}
+    >{{item.name}}</span>
+  {{/each}}
+</nav>

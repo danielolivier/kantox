@@ -1,4 +1,41 @@
 {{page-title "Products"}}
-{{#each this.model as |product|}}
-<Product @product={{product}} />
-{{/each}}
+
+<main class="container">
+  <Navbar />
+
+  <PageLayout
+    @title="Groceries"
+    @description="Special FX offers only the finest organic produce."
+  >
+    <div class="flex items-center justify-between gap-4 flex-wrap">
+      {{#each @model as |product|}}
+        <Ui::Card @product={{product}} @class="my-6">
+          <figure class="relative h-64 w-full">
+            <img
+              class="object-cover rounded-t-lg"
+              alt="Picture of {{product.name}}"
+              src={{product.image}}
+            />
+
+            <Ui::Tag @class="absolute top-4 right-4">{{product.offer}}</Ui::Tag>
+          </figure>
+
+          <section class="min-w-[352px] p-5">
+            <h2 class="text-xl leading-7 font-bold">
+              {{product.name}}
+            </h2>
+
+            <div class="flex justify-between items-center">
+              <span>
+                &#163;
+                {{product.price}}
+              </span>
+
+              <CartButton @product={{product}} />
+            </div>
+          </section>
+        </Ui::Card>
+      {{/each}}
+    </div>
+  </PageLayout>
+</main>

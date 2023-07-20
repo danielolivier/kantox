@@ -1,0 +1,32 @@
+<header class="w-full h-16 border-b border-b-gray-200 px-4">
+  <nav class="flex items-center justify-between h-full">
+    <LinkTo @route={{this.routes.products}} aria-label="Products">
+      <img alt="Application Logo" src="/images/logo.svg" class="h-7" />
+    </LinkTo>
+
+    <LinkTo
+      @route={{this.routes.checkout}}
+      class="flex items-center justify-center gap-4 bg-gray-50 rounded-lg shadow-sm cursor-pointer p-2 hover:bg-gray-100
+        {{if @model.length 'text-violet-700' 'text-black'}}"
+      aria-label="Checkout"
+    >
+      <HeroIcon @icon="shopping-cart" class="h-6 w-6" />
+
+      {{!-- For future purposes that might require extra options in the header --}}
+      {{yield}}
+
+      {{#if @model.length}}
+        <p class="font-bold">
+          {{total-quantity @model "quantity"}}
+        </p>
+
+        <p>
+          &#163;
+          {{#let (total-price @model) as |totals|}}
+            {{totals.total}}
+          {{/let}}
+        </p>
+      {{/if}}
+    </LinkTo>
+  </nav>
+</header>
