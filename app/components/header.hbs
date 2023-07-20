@@ -1,7 +1,7 @@
 <header class="w-full h-16 border-b border-b-gray-200 px-4">
   <nav class="flex items-center justify-between h-full">
     <LinkTo @route={{this.routes.products}} aria-label="Products">
-      <img alt="Application Logo" src="/images/logo.svg" class="h-7" />
+      <img alt="Application Logotype" src="/images/logo.svg" class="h-7" />
     </LinkTo>
 
     <LinkTo
@@ -12,7 +12,7 @@
     >
       <HeroIcon @icon="shopping-cart" class="h-6 w-6" />
 
-      {{!-- For future purposes that might require extra options in the header --}}
+      {{! For future purposes that might require extra options in the header }}
       {{yield}}
 
       {{#if @model.length}}

@@ -16,7 +16,7 @@ module('Unit | Service | checkout', function (hooks) {
 
     service.addItem(item);
 
-    assert.equal(item.quantity, 1, 'item quantity increased');
+    assert.strictEqual(item.quantity, 1, 'item quantity increased');
     assert.deepEqual(
       service._items,
       A([item]),
@@ -31,7 +31,7 @@ module('Unit | Service | checkout', function (hooks) {
     service.addItem(item);
     service.addItem(item);
 
-    assert.equal(item.quantity, 2, 'item quantity increased');
+    assert.strictEqual(item.quantity, 2, 'item quantity increased');
     assert.deepEqual(
       service._items,
       A([item]),
@@ -46,7 +46,7 @@ module('Unit | Service | checkout', function (hooks) {
     service.addItem(item);
     service.removeItem(item);
 
-    assert.equal(item.quantity, 1, 'item quantity decreased');
+    assert.strictEqual(item.quantity, 1, 'item quantity decreased');
     assert.deepEqual(
       service._items,
       A([item]),
@@ -61,7 +61,7 @@ module('Unit | Service | checkout', function (hooks) {
     service.addItem(item);
     service.removeItem(item);
 
-    assert.equal(item.quantity, 0, 'item quantity decreased');
+    assert.strictEqual(item.quantity, 0, 'item quantity decreased');
     assert.deepEqual(
       service._items,
       A([]),

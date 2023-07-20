@@ -23,7 +23,7 @@ export function totalPrice([array]) {
     0
   );
   const discount =
-    ((counts['GR1'] || 0) * prices['GR1']) / 2 +
+    (counts['GR1'] > 1 ? Math.floor(counts['GR1'] / 2) * prices['GR1'] : 0) +
     (counts['SR1'] >= 3 ? counts['SR1'] * (prices['SR1'] - 4.5) : 0) +
     (counts['CF1'] >= 3
       ? counts['CF1'] * (prices['CF1'] - (2 / 3) * prices['CF1'])

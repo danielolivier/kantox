@@ -17,11 +17,11 @@ module('Unit | Model | product', function (hooks) {
     });
 
     assert.ok(model);
-    assert.equal(model.name, 'Test Product');
-    assert.equal(model.price, 9.99);
-    assert.equal(model.code, 'ABC123');
-    assert.equal(model.offer, '50% Off');
-    assert.equal(model.image, 'test.jpg');
-    assert.equal(model.quantity, 10);
+    assert.strictEqual(model.name, 'Test Product');
+    assert.strictEqual(model.price, 9.99);
+    assert.strictEqual(model.code, 'ABC123');
+    assert.strictEqual(model.offer, '50% Off');
+    assert.strictEqual(model.image, 'test.jpg');
+    assert.strictEqual(model.quantity, 10);
   });
 });
